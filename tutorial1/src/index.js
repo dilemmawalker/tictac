@@ -4,79 +4,58 @@ import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
-// class ShoppingList extends React.Component{
-//   render(){
-//     return(
-//       <div className="shopping">
-//         <ul>
-//           <li>insta</li>
-//           <li>whatsapp</li>
-//           <li>fb</li>
-//         </ul>
-//       </div>
-//     );
-//   }
-// }
-
-class Square extends React.Component{
-  constructor(){
-    super();
-    this.state={
-      val: null
-    }
-  }
-  
-  render(props){
-    return(
-      <button class="square" onClick={
-        ()=>{
-          this.setState({
-            val:'x'
-          })
-        }
-      } >
-      {this.state.val}
-      </button>
-    );
-  }
+function Square(props){
+  return(
+    <button class="Square" onClick={
+      props.onClick
+    }>
+      { props.val}
+    </button>
+  );
 }
 
 class Board extends React.Component{
-  render(){
-    let ar=[0,1,2,3,4];
-      let arr=[];
-    ar.map((user,id)=>{
-     return arr.push(ar[id]);
-    }
-    );
-
-    let aa=arr.map((user,id)=>{
-      return <Square val={id}/>
-    }
-    );
-      
-    // return (
-    //   <div>
-    // <Square val={0} />
-    // {/* <Square val={i+1} />
-    // <Square val={i+2} />
-    // <Square val={i+3} /> */}
-    // </div>
-    // );
-    return(
+constructor(props){
+super(props)
+this.state={
+  squares: Array(9).fill('-'),
+  xnext:true
+};
+}
+handleClick(i){
+  const squares=this.state.squares.slice();
+  squares[i]=this.state.xnext?'x':'o';
+  this.setState({squares:squares,
+    xnext:!this.state.xnext
+  });
+}
+renderSquare(i){
+  return (<Square val={this.state.squares[i]} 
+          onClick={()=>{this.handleClick(i)}} />
+  );
+}
+render(){
+  return(
+    <div>
       <div>
-        {aa}
+        {this.renderSquare (0)}
+        {this.renderSquare(1)}
+        {this.renderSquare(2)}
       </div>
-    );
-  }
-  }
+      <div>
+      {this.renderSquare (3)}
+        {this.renderSquare(4)}
+        {this.renderSquare(5)}<br></br>
+      </div>
+      <div>
+      {this.renderSquare (6)}
+        {this.renderSquare(7)}
+        {this.renderSquare(8)}<br></br>
+      </div>
+    </div>
+  );
+}
+}
 
 ReactDOM.render(
   <Board/>,
