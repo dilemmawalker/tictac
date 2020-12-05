@@ -26,40 +26,59 @@ import reportWebVitals from './reportWebVitals';
 // }
 
 class Square extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      val: props.val
-    }
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state={
+  //     val: null
+  //   }
+  // }
   
   render(props){
+
+    let aa=props.map((user,id)=>{
+      return (
+        
+        <button 
+         val={'x'}
+         onClick={
+          ()=>{
+            this.setState=({val:'o'})
+          }
+        }></button>
+      );
+    })
+
+    // return(
+    //   <button class="square" onClick={
+    //     ()=>{
+    //       this.setState({
+    //         val:'x'
+    //       })
+    //     }
+    //   } >
+    //   {this.state.val}
+    //   </button>
+    // );
+
     return(
-      <button class="square" onClick={
-        ()=>{
-          this.setState({
-            val:'x'
-          })
-        }
-      } >
-      {this.state.val}
-      </button>
-    );
+      {aa}
+    )
   }
 }
 
 class Board extends React.Component{
   render(){
-    let ar=[0,1,2,3,4]; 
+    let ar=[0,1,2,3,4];
       let arr=[];
     ar.map((user,id)=>{
      return arr.push(ar[id]);
     }
     );
-    let aa=arr.map((user,id)=>{
-      return <Square val={id}/>
+
+   
+      return <Square val={arr}/>
       
-    })
+   
 
     // return (
     //   <div>
@@ -69,11 +88,11 @@ class Board extends React.Component{
     // <Square val={i+3} /> */}
     // </div>
     // );
-    return(
-      <div>
-        {aa}
-      </div>
-    );
+    // return(
+    //   <div>
+    //     {aa}
+    //   </div>
+    // );
   }
   }
 
