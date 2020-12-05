@@ -26,43 +26,25 @@ import reportWebVitals from './reportWebVitals';
 // }
 
 class Square extends React.Component{
-  // constructor(props){
-  //   super(props);
-  //   this.state={
-  //     val: null
-  //   }
-  // }
+  constructor(){
+    super();
+    this.state={
+      val: null
+    }
+  }
   
   render(props){
-
-    let aa=props.map((user,id)=>{
-      return (
-        
-        <button 
-         val={'x'}
-         onClick={
-          ()=>{
-            this.setState=({val:'o'})
-          }
-        }></button>
-      );
-    })
-
-    // return(
-    //   <button class="square" onClick={
-    //     ()=>{
-    //       this.setState({
-    //         val:'x'
-    //       })
-    //     }
-    //   } >
-    //   {this.state.val}
-    //   </button>
-    // );
-
     return(
-      {aa}
-    )
+      <button class="square" onClick={
+        ()=>{
+          this.setState({
+            val:'x'
+          })
+        }
+      } >
+      {this.state.val}
+      </button>
+    );
   }
 }
 
@@ -75,11 +57,11 @@ class Board extends React.Component{
     }
     );
 
-   
-      return <Square val={arr}/>
+    let aa=arr.map((user,id)=>{
+      return <Square val={id}/>
+    }
+    );
       
-   
-
     // return (
     //   <div>
     // <Square val={0} />
@@ -88,11 +70,11 @@ class Board extends React.Component{
     // <Square val={i+3} /> */}
     // </div>
     // );
-    // return(
-    //   <div>
-    //     {aa}
-    //   </div>
-    // );
+    return(
+      <div>
+        {aa}
+      </div>
+    );
   }
   }
 
